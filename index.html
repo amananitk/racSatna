@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of Rotaract Club of Satna. celebrating 50 years of service.">
+    <title>Rotaract Club of Satna | 50 Years of Service</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-group">
+                <img src="Logos/rotaryLogo.png" alt="Rotary International" class="logo-secondary">
+                <img src="Logos/shaktiLogo.png" alt="Shakti" class="logo-secondary logo-shakti">
+                <a href="#" class="logo-main">
+                    <img src="Logos/rotaractLogo.png" alt="Rotaract Club Satna Logo" class="logo-primary">
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#jubilee" class="nav-link highlight">Golden Jubilee</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
+                <li><a href="#members" class="nav-link">Members</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Rotaract Club of Satna</h1>
+            <p>Fellowship Through Service | Est. 1976</p>
+            <div class="hero-buttons">
+                <a href="#events" class="btn primary-btn">Upcoming Events</a>
+                <a href="#about" class="btn secondary-btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Who We Are</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Rotaract clubs bring together people ages 18-30 to exchange ideas with leaders in the community,
+                        develop leadership and professional skills, and have fun through service.</p>
+                    <p>In communities worldwide, Rotary and Rotaract members work side by side to take action through
+                        service. From big cities to rural villages, Rotaract is changing communities like ours.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h3>Service</h3>
+                        <p>Impactful projects for the community.</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Fellowship</h3>
+                        <p>Building lifelong friendships.</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Leadership</h3>
+                        <p>Developing professional skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Golden Jubilee Section -->
+    <section id="jubilee" class="section jubilee-section">
+        <div class="container">
+            <div class="jubilee-header">
+                <h2 class="section-title">Celebrating 50 Years</h2>
+                <p class="subtitle">1976 - 2026</p>
+            </div>
+
+            <!-- Master Display Area -->
+            <div id="timeline-display" class="timeline-display">
+                <div class="display-content">
+                    <div class="display-img-wrapper">
+                        <img id="display-image" src="https://via.placeholder.com/800x400?text=Rotaract+1976"
+                            alt="Year Highlight">
+                        <div class="display-year-label" id="display-year">1976</div>
+                    </div>
+                    <div class="display-text">
+                        <h3 id="display-title">Club Chartered</h3>
+                        <p id="display-desc">Highlighting our journey in 1976. Together we served, together we grew.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Scrubber -->
+            <div class="timeline-container">
+                <div class="timeline-scroll" id="timeline-scroll">
+                    <!-- Ticks generated by JS -->
+                </div>
+            </div>
+
+            <!-- Year Modal -->
+            <div id="year-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3 id="modal-year"></h3>
+                    <div class="modal-image-container">
+                        <img id="modal-image" src="" alt="Year Highlight">
+                    </div>
+                    <p id="modal-desc">Highlight from this year</p>
+                </div>
+            </div>
+
+            <div class="jubilee-cta">
+                <h3>Join us for the Golden Jubilee</h3>
+                <div class="date-box">
+                    <span class="day">11</span>
+                    <span class="month">July</span>
+                    <span class="year">2026</span>
+                </div>
+                <p>Mark your calendars for a historic celebration!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Events</h2>
+
+            <div class="events-wrapper">
+                <h3>Upcoming Events</h3>
+                <div class="event-card featured">
+                    <div class="event-date">
+                        <span>11</span>
+                        <span>JUL 2026</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Golden Jubilee Celebration</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Satna, MP</p>
+                        <p>The biggest celebration of our history. Join us as we celebrate 50 years of the Rotaract Club
+                            of Satna.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="events-wrapper">
+                <h3>Recent Activities</h3>
+                <div class="gallery-grid">
+                    <!-- Placeholders for gallery - using div blocks with CSS backgrounds or img tags -->
+                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Tree+Plantation"
+                            alt="Event 1"></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Blood+Donation"
+                            alt="Event 2"></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=School+Visit"
+                            alt="Event 3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <div class="members-grid">
+                <!-- Core Member 1 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="images/president.jpeg" alt="President">
+                    </div>
+                    <h3>Mehul Patel</h3>
+                    <p class="role">President</p>
+                </div>
+                <!-- Core Member 2 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="images/secretary.jpeg" alt="Secretary">
+                    </div>
+                    <h3>Rahul Agrawal</h3>
+                    <p class="role">Secretary</p>
+                </div>
+                <!-- Core Member 3 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="images/treasurer.jpeg" alt="Treasurer">
+                    </div>
+                    <h3>Chirag Valeja</h3>
+                    <p class="role">Treasurer</p>
+                </div>
+                <!-- Core Member 4 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="images/pe.jpeg" alt="Director">
+                    </div>
+                    <h3>Aman Agrawal</h3>
+                    <p class="role">President Elect</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title text-white">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> contact@rotaractsatna.org</p>
+                    <p><i class="fas fa-phone"></i> +91 123 456 7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Satna, Madhya Pradesh, India</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Message" rows="4" required></textarea>
+                    <button type="submit" class="btn primary-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rotaract Club of Satna. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
