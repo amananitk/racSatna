@@ -77,6 +77,10 @@ sections.forEach(section => {
 });
 
 // Master-Detail Timeline Logic
+let currentTimelineYear = 1976;
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
 const timelineScroll = document.getElementById('timeline-scroll');
 const displayImage = document.getElementById('display-image');
 const displayYear = document.getElementById('display-year');
@@ -99,6 +103,7 @@ if (timelineScroll) {
         // Timeline Item (The Tick Area)
         const item = document.createElement('div');
         item.classList.add('timeline-item');
+        item.dataset.year = year;
 
         // Alternating logic: Top vs Bottom
         const position = (year % 2 === 0) ? 'bottom' : 'top';
@@ -117,29 +122,56 @@ if (timelineScroll) {
 
         // Interaction: Click to update Master Display
         item.addEventListener('click', () => {
-            // Remove active class from all
-            document.querySelectorAll('.timeline-item.active').forEach(activeItem => {
-                activeItem.classList.remove('active');
-            });
-
-            // Add active to current
-            item.classList.add('active');
-
-            // Update Display
-            updateDisplay(year);
+            selectYear(year);
         });
 
         // Auto-select 1976
         if (year === 1976) {
-            item.classList.add('active');
             // Trigger initial display update to load the real image
-            setTimeout(() => updateDisplay(1976), 100);
+            setTimeout(() => selectYear(1976), 100);
         }
 
         content.appendChild(item);
     }
 
     timelineScroll.appendChild(content);
+}
+
+function selectYear(year) {
+    if (year < 1976 || year > 2026) return;
+    currentTimelineYear = year;
+
+    // Remove active class from all
+    document.querySelectorAll('.timeline-item.active').forEach(activeItem => {
+        activeItem.classList.remove('active');
+    });
+
+    // Add active to current
+    const activeItem = document.querySelector(`.timeline-item[data-year="${year}"]`);
+    if (activeItem) {
+        activeItem.classList.add('active');
+        // Smoothly center the active item in the scrubber
+        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    // Update Display
+    updateDisplay(year);
+
+    // Update Arrow Visibility bounds
+    if (prevBtn) prevBtn.style.display = currentTimelineYear === 1976 ? 'none' : 'flex';
+    if (nextBtn) nextBtn.style.display = currentTimelineYear === 2026 ? 'none' : 'flex';
+}
+
+// Arrow Button Listeners
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        selectYear(currentTimelineYear - 1);
+    });
+}
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        selectYear(currentTimelineYear + 1);
+    });
 }
 
 function updateDisplay(year) {
@@ -182,7 +214,92 @@ function updateDisplay(year) {
 
         // animate in
         imgWrapper.style.opacity = '1';
-    }, 300);
+
+    }, 300); // match transition time
 }
 
-console.log('Rotaract Website Loaded (Master-Detail Timeline)');
+// Background Image Preloading (Performance Optimization)
+// Wait until the main page and default image are fully loaded before downloading the rest
+window.addEventListener('load', () => {
+    // 1. Preload Timeline Images
+    // We already loaded 1976 natively, so start preloading from 1977
+    for (let year = 1977; year <= 2026; year++) {
+        const img = new Image();
+        img.src = `images/timeline/${year}.jpg`;
+    }
+
+    // 2. Initialize and Preload Activity Carousels
+    const carousels = document.querySelectorAll('.activity-carousel');
+
+    carousels.forEach(carousel => {
+        const folder = carousel.dataset.folder;
+        let total = 1;
+        const imageContainer = carousel.querySelector('.carousel-images');
+        const prevBtn = carousel.querySelector('.car-prev');
+        const nextBtn = carousel.querySelector('.car-next');
+
+        let currentSlide = 1;
+
+        // Recursively probe for images until one fails (e.g. 404 Not Found)
+        function loadNextImage(index) {
+            const img = new Image();
+            
+            img.onload = () => {
+                // The image exists! Add it to the carousel
+                img.classList.add('slide');
+                img.alt = `Activity Image ${index}`;
+                imageContainer.appendChild(img);
+                
+                total = index; // Update our known total
+                
+                // Try to see if the NEXT image exists
+                loadNextImage(index + 1);
+            };
+            
+            img.onerror = () => {
+                // The image does not exist. We've hit the end of the folder.
+                // If there is only 1 image total, hide the navigation arrows.
+                if (total <= 1) {
+                    if (prevBtn) prevBtn.style.display = 'none';
+                    if (nextBtn) nextBtn.style.display = 'none';
+                }
+            };
+
+            // Trigger the network request
+            img.src = `images/activities/${folder}/${index}.jpg`;
+        }
+
+        // Start probing from image #2
+        loadNextImage(2);
+
+        // Setup Carousel Navigation
+        const updateCarousel = () => {
+            const slides = imageContainer.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                if (index + 1 === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        };
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (total <= 1) return;
+                currentSlide = currentSlide > 1 ? currentSlide - 1 : total;
+                updateCarousel();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (total <= 1) return;
+                currentSlide = currentSlide < total ? currentSlide + 1 : 1;
+                updateCarousel();
+            });
+        }
+    });
+});
+
+console.log('Rotaract Website Loaded (Master-Detail Timeline & Activity Carousels)');

@@ -101,6 +101,8 @@
             <div id="timeline-display" class="timeline-display">
                 <div class="display-content">
                     <div class="display-img-wrapper">
+                        <button id="prev-btn" class="nav-arrow prev-arrow"><i class="fas fa-chevron-left"></i></button>
+                        <button id="next-btn" class="nav-arrow next-arrow"><i class="fas fa-chevron-right"></i></button>
                         <img id="display-image" src="https://via.placeholder.com/800x400?text=Rotaract+1976"
                             alt="Year Highlight">
                         <div class="display-year-label" id="display-year">1976</div>
@@ -119,17 +121,7 @@
                 </div>
             </div>
 
-            <!-- Year Modal -->
-            <div id="year-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <h3 id="modal-year"></h3>
-                    <div class="modal-image-container">
-                        <img id="modal-image" src="" alt="Year Highlight">
-                    </div>
-                    <p id="modal-desc">Highlight from this year</p>
-                </div>
-            </div>
+
 
             <div class="jubilee-cta">
                 <h3>Join us for the Golden Jubilee</h3>
@@ -167,13 +159,39 @@
             <div class="events-wrapper">
                 <h3>Recent Activities</h3>
                 <div class="gallery-grid">
-                    <!-- Placeholders for gallery - using div blocks with CSS backgrounds or img tags -->
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Tree+Plantation"
-                            alt="Event 1"></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Blood+Donation"
-                            alt="Event 2"></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=School+Visit"
-                            alt="Event 3"></div>
+                    <!-- Activity Carousels -->
+                    <div class="gallery-item activity-carousel" data-folder="activity1" data-total="4">
+                        <div class="carousel-images">
+                            <img src="images/activities/activity1/1.jpg" alt="Activity 1" class="slide active">
+                        </div>
+                        <button class="car-arrow car-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="car-arrow car-next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="gallery-overlay">
+                            <h4>Tree Plantation</h4>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item activity-carousel" data-folder="activity2" data-total="3">
+                        <div class="carousel-images">
+                            <img src="images/activities/activity2/1.jpg" alt="Activity 2" class="slide active">
+                        </div>
+                        <button class="car-arrow car-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="car-arrow car-next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="gallery-overlay">
+                            <h4>Blood Donation</h4>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item activity-carousel" data-folder="activity3" data-total="4">
+                        <div class="carousel-images">
+                            <img src="images/activities/activity3/1.jpg" alt="Activity 3" class="slide active">
+                        </div>
+                        <button class="car-arrow car-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="car-arrow car-next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="gallery-overlay">
+                            <h4>School Visit</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
