@@ -254,8 +254,22 @@ img {
     font-weight: 300;
 }
 
+@keyframes fadeInDelay {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeInDelay 1s ease 4s forwards;
+}
+
 .hero-buttons .btn {
-    margin: 0 10px;
+    margin: 0;
 }
 
 /* About Section */
@@ -815,8 +829,10 @@ img {
 
 .gallery-overlay h4 {
     margin: 0;
-    font-size: 1.1rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 /* Members Section */
@@ -953,6 +969,26 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .section {
+        padding: 50px 0; /* Reduced global mobile padding */
+    }
+
+    .hero {
+        height: auto;
+        min-height: 70vh;
+        padding: 120px 20px 60px;
+        background-size: cover, cover; /* Stop mobile letterboxing */
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
     .menu-toggle {
         display: block;
     }

@@ -127,8 +127,8 @@ if (timelineScroll) {
 
         // Auto-select 1976
         if (year === 1976) {
-            // Trigger initial display update to load the real image
-            setTimeout(() => selectYear(1976), 100);
+            // Trigger initial display update to load the real image but DONT scroll
+            setTimeout(() => selectYear(1976, true), 100);
         }
 
         content.appendChild(item);
@@ -137,7 +137,7 @@ if (timelineScroll) {
     timelineScroll.appendChild(content);
 }
 
-function selectYear(year) {
+function selectYear(year, isInitial = false) {
     if (year < 1976 || year > 2026) return;
     currentTimelineYear = year;
 
@@ -150,8 +150,10 @@ function selectYear(year) {
     const activeItem = document.querySelector(`.timeline-item[data-year="${year}"]`);
     if (activeItem) {
         activeItem.classList.add('active');
-        // Smoothly center the active item in the scrubber
-        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // Smoothly center the active item in the scrubber (skip if initial load to prevent page jump)
+        if (!isInitial) {
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
     }
 
     // Update Display
